@@ -1,0 +1,26 @@
+command = "cdl/target/debug/schema-registry"
+start-delay = "2s"
+stdout = "sr.log"
+stderr = "sr.log"
+user = "esavier"
+working-directory = "."
+
+[restart]
+strategy = "never"
+backoff = "0s"
+attempts = 0
+
+[failure]
+successful-exit-code = [ 0, 1, 255]
+strategy = "ignore"
+
+[environment]
+keep-env = false
+#re-export = [ "PATH", "DB_PASS"]
+additional = { INPUT_PORT = "6400",KAFKA_BROKERS="127.0.0.1:9092",DB_NAME = "/tmp/sr/db",REPLICATION_QUEUE="kafka",REPLICATION_TOPIC_OR_QUEUE="replication",REPLICATION_TOPIC_OR_EXCHANGE="whatever",REPLICATION_ROLE = "master",KAFKA_GROUP_ID = "sr",KAFKA_TOPICS = "replication",POD_NAME = "whatever",RUST_LOG = "debug" }
+
+[termination]
+signal = "TERM"
+wait = "2s"
+#die-if-failed  = [ "db.toml"]
+

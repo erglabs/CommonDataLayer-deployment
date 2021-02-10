@@ -1,0 +1,26 @@
+command = "cdl/target/debug/command-service --communication-method kafka victoria-metrics --victoria-metrics-output-url http://127.0.0.1:8089"
+start-delay = "2s"
+start-after = ["dr.toml"]
+stdout = "csvm.log"
+stderr = "csvm.log"
+user = "esavier"
+working-directory = "."
+
+[restart]
+strategy = "never"
+backoff = "0s"
+attempts = 0
+
+[failure]
+successful-exit-code = [ 0, 1, 255]
+strategy = "ignore"
+
+[environment]
+keep-env = false
+additional = {KAFKA_BROKERS = "127.0.0.1:9092",KAFKA_GROUP_ID = "csvm",KAFKA_INPUT_GROUP_ID = "csvm",KAFKA_INPUT_TOPIC = "internal",REPORT_TOPIC_OR_EXCHANGE = "reportout",UNORDERED_TOPICS_OR_QUEUES = "csvmin",RUST_LOG = "debug",REPORT_BROKER = "localhost:9092",REPORT_TOPIC = "reportout"}
+
+[termination]
+signal = "TERM"
+wait = "2s"
+#die-if-failed  = [ "db.toml"]
+
