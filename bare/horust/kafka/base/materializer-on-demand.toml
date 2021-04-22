@@ -1,0 +1,33 @@
+command = "cdl/target/debug/materializer-ondemand"
+start-delay = "2s"
+# start-after = ["another.toml", "second.toml"]
+stdout = "logs/materializer-ondemand.log"
+stderr = "logs/materializer-ondemand.log"
+user = "$USER"
+working-directory = "."
+
+[restart]
+strategy = "never"
+backoff = "0s"
+attempts = 0
+
+[failure]
+successful-exit-code = [ 0, 1, 255]
+strategy = "ignore"
+
+[environment]
+keep-env = false
+#re-export = [ "PATH", "DB_PASS"]
+
+[environment.additional]
+INPUT_PORT                      = "50108"
+OBJECT_BUILDER_ADDR             = "http://localhost:50107"
+RUST_LOG                        = "info,materializer_ondemand=trace"
+OTEL_SERVICE_NAME               = "materializer-ondemand"
+METRICS_PORT                    = "0" # Random
+STATUS_PORT                     = "0" # Random
+
+[termination]
+signal = "TERM"
+wait = "2s"
+#die-if-failed  = [ "db.toml"]

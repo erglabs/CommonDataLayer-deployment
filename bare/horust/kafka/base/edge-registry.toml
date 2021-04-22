@@ -1,0 +1,42 @@
+command = "cdl/target/debug/edge-registry"
+start-delay = "2s"
+# start-after = ["another.toml", "second.toml"]
+stdout = "logs/edge-registry.log"
+stderr = "logs/edge-registry.log"
+user = "$USER"
+working-directory = "."
+
+[restart]
+strategy = "never"
+backoff = "0s"
+attempts = 0
+
+[failure]
+successful-exit-code = [ 0, 1, 255]
+strategy = "ignore"
+
+[environment]
+keep-env = false
+#re-export = [ "PATH", "DB_PASS"]
+
+[environment.additional]
+POSTGRES_USERNAME = "postgres"
+POSTGRES_PASSWORD = "1234"
+POSTGRES_HOST     = "localhost"
+POSTGRES_PORT     = "5432"
+POSTGRES_DBNAME   = "postgres"
+POSTGRES_SCHEMA   = "cdl"
+RPC_PORT          = "50110"
+CONSUMER_METHOD   = "kafka"
+CONSUMER_HOST     = "localhost:9093"
+CONSUMER_TAG      = "edge-registry"
+CONSUMER_SOURCE   = "cdl.edge.input"
+RUST_LOG          = "info,edge_registry=trace"
+OTEL_SERVICE_NAME = "edge-registry"
+METRICS_PORT      = "0" # Random
+STATUS_PORT       = "0" # Random
+
+[termination]
+signal = "TERM"
+wait = "2s"
+#die-if-failed  = [ "db.toml"]
