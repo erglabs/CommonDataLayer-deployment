@@ -7,12 +7,16 @@ cargo build
 
 cd ..
 
-docker-compose -f compose/docker-compose.yml down --remove-orphans
+if [[ $* == *--reload* ]]
+then
+    docker-compose -f compose/docker-compose.yml down --remove-orphans
+    rm -Rf /tmp/schema-service/db
+fi
 docker-compose -f compose/docker-compose.yml up -d postgres kafka jaeger
 
 sleep 15s
 
-rm logs/*
+rm logs/*.log
 
 HORUST_LOG=info horust \
     --services-path ./bare/horust/kafka/base \

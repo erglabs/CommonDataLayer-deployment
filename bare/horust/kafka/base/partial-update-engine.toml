@@ -21,7 +21,7 @@ keep-env = false
 
 [environment.additional]
 SCHEMA_REGISTRY_ADDR = "http://localhost:50101"
-KAFKA_BROKERS        = "localhost:9093"
+KAFKA_BROKERS        = "localhost:9092"
 KAFKA_GROUP_ID       = "partial_update_engine"
 NOTIFICATION_TOPIC   = "cdl.reports"
 OBJECT_BUILDER_TOPIC = "cdl.materialize"

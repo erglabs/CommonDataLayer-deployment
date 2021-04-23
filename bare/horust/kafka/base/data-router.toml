@@ -21,7 +21,7 @@ keep-env = false
 
 [environment.additional]
 COMMUNICATION_METHOD = "kafka"
-KAFKA_BROKERS        = "localhost:9093"
+KAFKA_BROKERS        = "localhost:9092"
 KAFKA_GROUP_ID       = "data_router"
 INPUT_SOURCE         = "cdl.data.input"
 SCHEMA_REGISTRY_ADDR = "http://localhost:50101"

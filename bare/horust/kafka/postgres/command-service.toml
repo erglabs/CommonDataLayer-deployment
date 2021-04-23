@@ -22,7 +22,7 @@ keep-env = false
 [environment.additional]
 COMMUNICATION_METHOD = "kafka"
 KAFKA_GROUP_ID       = "postgres_command"
-KAFKA_BROKERS        = "localhost:9093"
+KAFKA_BROKERS        = "localhost:9092"
 ORDERED_SOURCES      = "cdl.document.1.data"
 UNORDERED_SOURCES    = "cdl.document.2.data"
 POSTGRES_USERNAME    = "postgres"

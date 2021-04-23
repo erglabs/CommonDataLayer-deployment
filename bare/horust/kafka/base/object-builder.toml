@@ -22,7 +22,7 @@ keep-env = false
 [environment.additional]
 MQ_METHOD                       = "kafka"
 INPUT_PORT                      = "50107"
-KAFKA_BROKERS                   = "localhost:9093"
+KAFKA_BROKERS                   = "localhost:9092"
 KAFKA_GROUP_ID                  = "object_builder"
 MQ_SOURCE                       = "cdl.materialize"
 SCHEMA_REGISTRY_ADDR            = "http://localhost:50101"
