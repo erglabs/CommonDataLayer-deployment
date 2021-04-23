@@ -1,0 +1,34 @@
+command = "cdl/target/debug/query-service-ts druid"
+start-delay = "2s"
+# start-after = ["another.toml", "second.toml"]
+stdout = "logs/druid/query-service.log"
+stderr = "logs/druid/query-service.log"
+user = "$USER"
+working-directory = "."
+
+[restart]
+strategy = "never"
+backoff = "0s"
+attempts = 0
+
+[failure]
+successful-exit-code = [ 0, 1, 255]
+strategy = "ignore"
+
+[environment]
+keep-env = false
+#re-export = [ "PATH", "DB_PASS"]
+
+[environment.additional]
+INPUT_PORT        = "50205"
+DRUID_QUERY_URL   = "http://localhost:8428/api/v1"
+DRUID_TABLE_NAME  = "cdl.timeseries.internal.druid"
+RUST_LOG          = "info,query_service=trace"
+OTEL_SERVICE_NAME = "druid-query"
+METRICS_PORT      = "0" # Random
+STATUS_PORT       = "0" # Random
+
+[termination]
+signal = "TERM"
+wait = "2s"
+#die-if-failed  = [ "db.toml"]

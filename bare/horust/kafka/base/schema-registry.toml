@@ -1,0 +1,42 @@
+command = "cdl/target/debug/schema-registry"
+start-delay = "2s"
+# start-after = ["another.toml", "second.toml"]
+stdout = "logs/schema-registry.log"
+stderr = "logs/schema-registry.log"
+user = "$USER"
+working-directory = "."
+
+[restart]
+strategy = "on-failure"
+backoff = "1s"
+attempts = 10
+
+[failure]
+successful-exit-code = [ 0, 1, 255 ]
+strategy = "ignore"
+
+[environment]
+keep-env = false
+#re-export = [ "PATH", "DB_PASS"]
+
+[environment.additional]
+DB_NAME                 = "/tmp/schema-service/db"
+REPLICATION_ROLE        = "master"
+COMMUNICATION_METHOD    = "kafka"
+KAFKA_BROKERS           = "localhost:9092"
+KAFKA_GROUP_ID          = "schema_registry"
+REPLICATION_SOURCE      = "cdl.schema_registry.internal"
+REPLICATION_DESTINATION = "cdl.schema_registry.internal"
+INPUT_PORT              = "50101"
+IMPORT_FILE             = "./bare/setup/schema-registry/initial-schema.kafka.json"
+RUST_LOG                = "info,schema_registry=trace"
+OTEL_SERVICE_NAME       = "schema-registry"
+METRICS_PORT            = "0" # Random
+STATUS_PORT             = "0" # Random
+
+[termination]
+signal = "TERM"
+wait = "2s"
+#die-if-failed  = [ "db.toml"]
+
+
