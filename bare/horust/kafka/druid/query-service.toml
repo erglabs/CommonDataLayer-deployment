@@ -1,8 +1,8 @@
-command = "cdl/target/debug/query-service postgres"
+command = "cdl/target/debug/query-service-ts druid"
 start-delay = "2s"
 # start-after = ["another.toml", "second.toml"]
-stdout = "logs/postgres/query-service.log"
-stderr = "logs/postgres/query-service.log"
+stdout = "logs/druid/query-service.log"
+stderr = "logs/druid/query-service.log"
 user = "$USER"
 working-directory = "."
 
@@ -20,15 +20,11 @@ keep-env = false
 #re-export = [ "PATH", "DB_PASS"]
 
 [environment.additional]
-POSTGRES_USERNAME = "postgres"
-POSTGRES_PASSWORD = "1234"
-POSTGRES_HOST     = "localhost"
-POSTGRES_PORT     = "5432"
-POSTGRES_DBNAME   = "postgres"
-POSTGRES_SCHEMA   = "cdl"
-INPUT_PORT        = "50201"
+INPUT_PORT        = "50205"
+DRUID_QUERY_URL   = "http://localhost:8428/api/v1"
+DRUID_TABLE_NAME  = "cdl.timeseries.internal.druid"
 RUST_LOG          = "info,query_service=trace"
-OTEL_SERVICE_NAME = "postgres-query"
+OTEL_SERVICE_NAME = "druid-query"
 METRICS_PORT      = "0" # Random
 STATUS_PORT       = "0" # Random
 

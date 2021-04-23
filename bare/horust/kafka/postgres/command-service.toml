@@ -1,8 +1,8 @@
 command = "cdl/target/debug/command-service postgres"
 start-delay = "2s"
 # start-after = ["another.toml", "second.toml"]
-stdout = "logs/command-service.log"
-stderr = "logs/command-service.log"
+stdout = "logs/postgres/command-service.log"
+stderr = "logs/postgres/command-service.log"
 user = "$USER"
 working-directory = "."
 
