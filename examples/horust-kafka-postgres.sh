@@ -3,21 +3,38 @@ set -euo pipefail
 
 cd cdl
 
-cargo build
+if [[ $* == *--release* ]]
+then
+    cargo build --release
+else
+    cargo build
+fi
 
 cd ..
 
-if [[ $* == *--reload* ]]
+if [[ $* == *--clean* ]]
 then
-    docker-compose -f compose/docker-compose.yml down --remove-orphans
+    if [[ $* == *--infra* ]]
+    then
+        docker-compose -f compose/docker-compose.yml down --remove-orphans
+    fi
     rm -Rf /tmp/schema-service/db
+    rm logs/*.log
 fi
-docker-compose -f compose/docker-compose.yml up -d postgres kafka jaeger
+if [[ $* == *--infra* ]]
+then
+    docker-compose -f compose/docker-compose.yml up -d postgres kafka jaeger
 
-sleep 15s
+    sleep 15s
+fi
 
-rm logs/*.log
+if [[ $* == *--release* ]]
+then
+export TARGET="release"
+fi
 
-HORUST_LOG=info horust \
+export HORUST_LOG="info"
+
+horust \
     --services-path ./bare/horust/kafka/base \
     --services-path ./bare/horust/kafka/postgres

@@ -1,4 +1,4 @@
-command = "cdl/target/debug/materializer-general postgres"
+command = "cdl/target/${TARGET:-debug}/materializer-general postgres"
 start-delay = "2s"
 # start-after = ["another.toml", "second.toml"]
 stdout = "logs/postgres/materializer.log"

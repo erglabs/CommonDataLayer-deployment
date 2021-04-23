@@ -1,4 +1,4 @@
-command = "cdl/target/debug/materializer-ondemand"
+command = "cdl/target/${TARGET:-debug}/materializer-ondemand"
 start-delay = "2s"
 # start-after = ["another.toml", "second.toml"]
 stdout = "logs/materializer-ondemand.log"
