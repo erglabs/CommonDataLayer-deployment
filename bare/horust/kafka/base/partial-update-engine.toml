@@ -1,4 +1,4 @@
-command = "cdl/target/debug/partial-update-engine"
+command = "cdl/target/${TARGET:-debug}/partial-update-engine"
 start-delay = "2s"
 # start-after = ["another.toml", "second.toml"]
 stdout = "logs/partial-update-engine.log"

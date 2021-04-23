@@ -1,4 +1,4 @@
-command = "cdl/target/debug/query-router"
+command = "cdl/target/${TARGET:-debug}/query-router"
 start-delay = "2s"
 # start-after = ["another.toml", "second.toml"]
 stdout = "logs/query-router.log"

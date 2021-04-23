@@ -1,4 +1,4 @@
-command = "cdl/target/debug/object-builder"
+command = "cdl/target/${TARGET:-debug}/object-builder"
 start-delay = "10s"
 start-after = ["schema-registry.toml"]
 stdout = "logs/object-builder.log"
