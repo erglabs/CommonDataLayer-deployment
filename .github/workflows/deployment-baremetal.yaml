@@ -18,13 +18,18 @@ jobs:
         with:
           clean: true
           submodules: true
+
       - name: Start environment via docker-compose
         run: docker-compose -f compose/docker-compose.yml up -d postgres kafka
+
       - name: Install Rust
         uses: actions-rs/toolchain@v1
         with:
-         profile: minimal
-         override: true
+          toolchain: nightly
+          profile: minimal
+          override: true
+          components: clippy, rustfmt
+
       - name: Build cdl
         run: |
           cd cdl
