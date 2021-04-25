@@ -1,0 +1,31 @@
+name: test baremetal deployment
+
+on:
+  push:
+    branches:
+      - "develop"
+  pull_request:
+
+
+jobs:
+  component-testing:
+    name: Test modules
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+        with:
+          clean: true
+          submodules: true
+      - name: Start environment via docker-compose
+        run: docker-compose -f deployment/compose/docker-compose.yml up -d postgres kafka victoria_metrics
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+         profile: minimal
+         override: true
+      - name: Build cdl
+        run: |
+          cd cdl
+          cargo build
