@@ -17,9 +17,10 @@ then
     if [[ $* == *--infra* ]]
     then
         docker-compose -f compose/docker-compose.yml down --remove-orphans
+        sleep 3s
     fi
-    rm -Rf /tmp/schema-service/db
-    rm logs/*.log
+    rm -rf logs
+    mkdir -p logs/postgres
 fi
 if [[ $* == *--infra* ]]
 then
