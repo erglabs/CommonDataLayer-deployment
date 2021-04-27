@@ -22,7 +22,6 @@ updating process itself:
 ### Providing CommonDataLayer sources
 Horust expects `cdl` folder to either point or contain
 
-
 #### Git submodule
 If you wish, you can either create softlink to existing cdl repo, or initialize it as a submodule
 repo initialized as a submodule will use ssh method of clone to get a fresh repo with specific commit and branch that should work with current deployment.
