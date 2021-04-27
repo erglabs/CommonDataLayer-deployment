@@ -41,6 +41,7 @@ jobs:
 
       - name: test basic cdl setup
         run: |
+          cd
           horust --services-path bare/horust/kafka/base --services-path bare/horust/kafka/postgres &
           sleep 30
           if ! $(ps aux | grep horust); then exit -1 ; fi
