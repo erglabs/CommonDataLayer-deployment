@@ -1,11 +1,11 @@
 
 ## Horust
 
-Tested only on unix-like systems, ( gentoo, debian, HURD-6.1 )
+Tested only on linux-like systems, ( gentoo, debian, HURD-6.1 ).
+
+Unfortunately it does not compile on macOS.
 
 ### Setup
-
-TODO: Wait until my changes in Horust gets merged (https://github.com/FedericoPonzi/Horust/pull/56)
 
 ```
 cargo install horust
