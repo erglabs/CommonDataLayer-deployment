@@ -12,7 +12,7 @@ backoff = "0s"
 attempts = 0
 
 [failure]
-successful-exit-code = [ 0, 1, 255]
+successful-exit-code = [ 0, 1, 255 ]
 strategy = "ignore"
 
 [environment]
@@ -28,6 +28,7 @@ MQ_SOURCE                       = "cdl.materialize"
 SCHEMA_REGISTRY_ADDR            = "http://localhost:50101"
 RUST_LOG                        = "info,object_builder=trace"
 OTEL_SERVICE_NAME               = "object-builder"
+CHUNK_CAPACITY                  = "1000"
 METRICS_PORT                    = "0" # Random
 STATUS_PORT                     = "0" # Random
 
