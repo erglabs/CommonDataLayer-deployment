@@ -20,13 +20,7 @@ keep-env = false
 #re-export = [ "PATH", "DB_PASS"]
 
 [environment.additional]
-INPUT_PORT        = "50205"
-DRUID_QUERY_URL   = "http://localhost:8428/api/v1"
-DRUID_TABLE_NAME  = "cdl.timeseries.internal.druid"
-RUST_LOG          = "info,query_service=trace"
-OTEL_SERVICE_NAME = "druid-query"
-METRICS_PORT      = "0" # Random
-STATUS_PORT       = "0" # Random
+CDL_CONFIG                  = "cdl/.cdl"
 
 [termination]
 signal = "TERM"
