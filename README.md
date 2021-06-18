@@ -24,12 +24,12 @@ cd ../
 ### Infrastructure
 start all necessary dependencies with logging output to console
 ```
-docker-compose -f compose/docker-compose.yml up postgres kafka
+docker-compose -f cdl/deployment/compose/docker-compose.yml up postgres kafka
 ```
 
 alternatively start as daemons  only use when the deployment is stable on your setup
 ```
-docker-compose -f compose/docker-compose.yml up -d postgres kafka
+docker-compose -f cdl/deployment/compose/docker-compose.yml up -d postgres kafka
 ```
 
 ### Start Deployment
