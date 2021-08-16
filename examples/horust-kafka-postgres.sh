@@ -16,7 +16,7 @@ if [[ $* == *--clean* ]]
 then
     if [[ $* == *--infra* ]]
     then
-        docker-compose -f cdl/deployment/compose/docker-compose.yml down --remove-orphans
+        docker-compose -f infrastructure/docker-compose.yml down --remove-orphans
         sleep 3s
     fi
     rm -rf logs
@@ -24,7 +24,7 @@ then
 fi
 if [[ $* == *--infra* ]]
 then
-    docker-compose -f cdl/deployment/compose/docker-compose.yml up -d postgres kafka jaeger
+    docker-compose -f infrastructure/docker-compose.yml up -d postgres kafka jaeger
 
     sleep 15s
 fi
