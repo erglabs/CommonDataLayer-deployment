@@ -67,6 +67,14 @@ services:
     volumes:
       - ./.setup/rabbitmq:/etc/cdl
 
+  elasticsearch:
+    image: elasticsearch:7.14.0
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - "discovery.type=single-node"
+
   druid_coordinator:
     image: apache/druid:0.20.0
     depends_on:
