@@ -20,7 +20,7 @@ keep-env = false
 #re-export = [ "PATH", "DB_PASS"]
 
 [environment.additional]
-CDL_CONFIG        = "cdl/.cdl"
+CDL_CONFIG        = "cdl/.cdl/development-kafka"
 
 [termination]
 signal = "TERM"
